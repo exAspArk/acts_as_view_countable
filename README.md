@@ -18,24 +18,24 @@ Or install it yourself as:
 
 ## Usage
 
-  ```ruby
-  # Model
-  class Route < ActiveRecord::Base
-    acts_as_view_countable column_name: :view_count
-  end
+```ruby
+# Model
+class Route < ActiveRecord::Base
+  acts_as_view_countable column_name: :view_count
+end
 
-  # Controller
-  class RoutesController < ApplicationController
-    def show
-      @route = Route.find(params[:id])
-      @route.inc_view_count(1)
-    end
+# Controller
+class RoutesController < ApplicationController
+  def show
+    @route = Route.find(params[:id])
+    @route.inc_view_count(1)
+    # or @route.inc_view_count!(1) to save it in DB without calling ActiveRecord callbacks
   end
+end
 
-  # View
-  Id: <%= @route.id %>
-  View count: <%= @route.view_count %>
-  ```
+# View
+@route.view_count
+```
 
 ## Contributing
 
